@@ -1,10 +1,6 @@
-name: "Tests"
+name: Tests
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - master
-
 jobs:
   Test:
     # Single Node 16 leg. The declared Node 8 leg is dropped: the pinned dev
@@ -14,6 +10,8 @@ jobs:
     # runners.
     runs-on: ubuntu-latest
     steps:
+      - name: Configure npm time machine registry
+        run: npm config set registry https://:2021-05-27T16%3A17%3A12.429000Z@time-machines-npm.sealsecurity.io/
       - name: Checkout Code
         uses: actions/checkout@v4
       - name: Install Node
@@ -30,6 +28,8 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     steps:
+      - name: Configure npm time machine registry
+        run: npm config set registry https://:2021-05-27T16%3A17%3A12.429000Z@time-machines-npm.sealsecurity.io/
       - name: Checkout Code
         uses: actions/checkout@v4
       - name: Install Node
